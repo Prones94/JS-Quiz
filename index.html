@@ -1,114 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Javascript Quiz</title>
-</head>
-<body>
+  </head>
 
-    <div id="quiz" class="container quiz">
-
-    </div>
-
-
-
-
+  <body>
+    <div id="quiz" class="container quiz"></div>
 
     <!-- Javascript -->
 
     <script>
-        const questions = [
-            {
-                q:'Where did sushi originate?',
-                a: [
-                    'Japan',
-                    'China',
-                    'Korea',
-                    'India',
-                    'Taiwan'
-                ],
-                correct: 0
-            },
-            {
-                q:'What does sashimi mean?',
-                a: [
-                    'Thin Fish',
-                    'Shredded',
-                    'Pierced Body',
-                    'Slippery Flesh'
-                ],
-                correct: 2
-            },
-            {
-                q:'Nori is: ',
-                a: [
-                    'Soybeans',
-                    'Seaweed',
-                    'Pickle',
-                    'Cucumber'
-                ],
-                correct: 1
-            },
-            {
-                q: 'What is the green paste usually served with sushi?',
-                a: [
-                    'Horseradish',
-                    'Wasabi',
-                    'Guacamole',
-                    'Cucumber Paste'
-                ],
-                correct: 0
-            },
-            {
-                q:'What Japanese word could either mean an alcoholic beverage or salmon?',
-                a: [
-                    'Hamachi',
-                    'Toro',
-                    'Unagi',
-                    'Sake',
-                    'Kani'
-                ],
-                correct: 3
-            },
-            {
-                q: ''
-            }
-        ]
+      		const questions = [
+      			{
+      				q: "Where did sushi originate?",
+      				a: ["Japan", "China", "Korea", "India", "Taiwan"],
+      				correct: 0
+      			},
+      			{
+      				q: "What does sashimi mean?",
+      				a: ["Thin Fish", "Shredded", "Pierced Body", "Slippery Flesh"],
+      				correct: 2
+      			},
+      			{
+      				q: "Nori is: ",
+      				a: ["Soybeans", "Seaweed", "Pickle", "Cucumber"],
+      				correct: 1
+      			},
+      			{
+							q: "What Japanese word could either mean an alcoholic beverage or salmon?", 
+							a: ["Hamachi", "Toro","Unagi", "Sake", "Kani"], 
+							correct: 3
+						},
+						{
+							q: "What is the green paste usually served with sushi?", 
+							a: ["Horseradish","Wasabi", "Guacamole", "Cucumber Paste"], 
+							correct: 0 
+						}
+              ];
 
-        function init() {
-            const quizElement = document.getElementById('quiz')
-            let quizString = ''
+      	
+      		function init() {
+      			const quizElement = document.getElementById("quiz");
+      			let quizString = "";
 
-            questions.forEach(function(question) {
-                let answerString = ''
-                question.a.forEach(function(answer) {
-                    answerString += `
+      			questions.forEach(function(question, qIndex) {
+      				let answerString = "";
+
+      				question.a.forEach(function(answer, aIndex) {
+      					answerString += `
                         <li>
                             <label>
-                                <input type="radio">
+                                <input type="radio" name="q-${qIndex}">
                                 ${answer}
-                            </label>    
-                        </li>
-                    `
-                })
+                            </label>
+                        </li>`;
+      				});
 
-                quizString += `
-                <form>
-                    <h1>${question.q}</h1>
+      				quizString += `
+                    <form>
+                        <h1>${question.q}</h1>
+                        <div class="alert"></div>
                         <ul>
                             ${answerString}
-                        </ul>
-                </form>
-                `
-            } )
+												</ul>
+												<button type="submit">Submit</button>
+                    </form>`;
+      			});
 
-            quizElement.innerHTML = quizString
-        }
-
-
-        init()
+      			quizElement.innerHTML = quizString;
+      			
+      		}
+      		init();
     </script>
-</body>
+  </body>
 </html>
+
