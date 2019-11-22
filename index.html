@@ -8,6 +8,9 @@
 </head>
 <body>
 
+    <div id="quiz" class="container quiz">
+
+    </div>
 
 
 
@@ -16,6 +19,96 @@
     <!-- Javascript -->
 
     <script>
-    const obj = {</script>
+        const questions = [
+            {
+                q:'Where did sushi originate?',
+                a: [
+                    'Japan',
+                    'China',
+                    'Korea',
+                    'India',
+                    'Taiwan'
+                ],
+                correct: 0
+            },
+            {
+                q:'What does sashimi mean?',
+                a: [
+                    'Thin Fish',
+                    'Shredded',
+                    'Pierced Body',
+                    'Slippery Flesh'
+                ],
+                correct: 2
+            },
+            {
+                q:'Nori is: ',
+                a: [
+                    'Soybeans',
+                    'Seaweed',
+                    'Pickle',
+                    'Cucumber'
+                ],
+                correct: 1
+            },
+            {
+                q: 'What is the green paste usually served with sushi?',
+                a: [
+                    'Horseradish',
+                    'Wasabi',
+                    'Guacamole',
+                    'Cucumber Paste'
+                ],
+                correct: 0
+            },
+            {
+                q:'What Japanese word could either mean an alcoholic beverage or salmon?',
+                a: [
+                    'Hamachi',
+                    'Toro',
+                    'Unagi',
+                    'Sake',
+                    'Kani'
+                ],
+                correct: 3
+            },
+            {
+                q: ''
+            }
+        ]
+
+        function init() {
+            const quizElement = document.getElementById('quiz')
+            let quizString = ''
+
+            questions.forEach(function(question) {
+                let answerString = ''
+                question.a.forEach(function(answer) {
+                    answerString += `
+                        <li>
+                            <label>
+                                <input type="radio">
+                                ${answer}
+                            </label>    
+                        </li>
+                    `
+                })
+
+                quizString += `
+                <form>
+                    <h1>${question.q}</h1>
+                        <ul>
+                            ${answerString}
+                        </ul>
+                </form>
+                `
+            } )
+
+            quizElement.innerHTML = quizString
+        }
+
+
+        init()
+    </script>
 </body>
 </html>
