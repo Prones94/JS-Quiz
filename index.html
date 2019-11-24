@@ -52,9 +52,13 @@
 
           question.a.forEach(function(answer, aIndex) {
             answerString += `
-                        <li>
+                        <li style="order: ">
                             <label>
-                                <input type="radio" name="q-${qIndex}">
+                                <input 
+									type="radio" 
+									name="q-${qIndex}"
+									data-correct="${question.correct === aIndex}"
+								>
                                 ${answer}
                             </label>
                         </li>`;
@@ -64,7 +68,7 @@
                     <form>
                         <h1>${question.q}</h1>
                         <div class="alert"></div>
-                        <ul>
+                        <ul style="display: flex; flex-direction: column">
                             ${answerString}
 						</ul>
 						<button type="submit">Submit</button>
@@ -74,11 +78,31 @@
         quizElement.innerHTML = quizString;
         quizElement.addEventListener("submit", function(e) {
           e.preventDefault();
-          const inputs = e.target.querySelector("input[type=radio]:checked");
-          console.log(inputs);
+          const selectedInput = e.target.querySelector("input[type=radio]:checked");
+          console.log(selectedInput);
         });
       }
       init();
+
+	  function random(n) {
+		const r = Math.random() * n
+		return Math.floor(r)
+	  }
+	  function randomRange(x){
+		const arr = []
+		for (let i =0; i < x; i += 1) {
+			arr.push(i)
+		}
+		const randomArr = []
+		while(arr.length > 0) {
+			const randomIndex = random(arr.length)
+			const randomNumber = arr[randomIndex]
+			randomArr.push(randomNumber)
+			arr.splice(randomIndex,1)
+		}
+		return randomArr
+	  }
+	  console.log(randomRange(10))
     </script>
   </body>
 </html>
